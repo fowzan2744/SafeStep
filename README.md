@@ -437,56 +437,7 @@ The frontend uses a centralized API configuration in `src/services/api.js`:
 - Endpoint management
 - Authentication headers
 - Error handling
-
-## 🧪 Testing
-
-### Manual Testing
-1. **Registration Flow** - Test OTP verification
-2. **Login System** - Test authentication
-3. **Contact Management** - Test CRUD operations
-4. **Emergency Alerts** - Test alert sending
-5. **Map Services** - Test location and POI features
-6. **Admin Dashboard** - Test admin registration, login, and dashboard features
-7. **User Management** - Test user activation/deactivation
-8. **Alert Management** - Test alert status updates
-9. **Analytics** - Test charts and data visualization
-10. **Internationalization** - Test language switching and RTL support
-11. **Data Export** - Test CSV export functionality
-
-### API Testing
-Use tools like Postman or curl to test endpoints:
-```bash
-# Test user login
-curl -X POST http://localhost:5000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"password123"}'
-
-# Test admin login
-curl -X POST http://localhost:5000/api/admin/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@example.com","password":"admin123"}'
-
-# Test admin stats (requires admin token)
-curl -X GET http://localhost:5000/api/admin/stats \
-  -H "Authorization: Bearer YOUR_ADMIN_TOKEN"
-```
-
-### Admin Dashboard Testing
-1. **Admin Registration** - Test OTP-based admin signup
-2. **Admin Login** - Test admin authentication
-3. **Dashboard Access** - Verify all dashboard tabs work
-4. **User Management** - Test user listing, search, and status updates
-5. **Alert Management** - Test alert filtering and status updates
-6. **Analytics** - Verify charts display correctly
-7. **System Health** - Check system metrics
-8. **Data Export** - Test CSV download functionality
-
-### Internationalization Testing
-1. **Language Switching** - Test all supported languages
-2. **RTL Support** - Verify Arabic layout works correctly
-3. **Translation Coverage** - Ensure all UI elements are translated
-4. **Fallback System** - Test missing translation handling
-5. **Language Persistence** - Verify language selection is saved
+  
 
 ## 🤝 Contributing
 
@@ -512,7 +463,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For support and questions:
 - Create an issue in the repository
-- Contact the development team
 - Check the documentation
 
 ---
