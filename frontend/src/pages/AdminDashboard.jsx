@@ -16,6 +16,7 @@ import {
   Filler,
 } from 'chart.js';
 import { Line, Bar, Pie, Doughnut } from 'react-chartjs-2';
+import { ADMIN_ENDPOINTS } from '../services/api';
 
 // Register Chart.js components
 ChartJS.register(
@@ -79,9 +80,9 @@ const AdminDashboard = () => {
     try {
       // Load users, alerts, and stats in parallel
       const [usersRes, alertsRes, statsRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/admin/users', { headers: getAuthHeaders() }),
-        axios.get('http://localhost:5000/api/admin/alerts', { headers: getAuthHeaders() }),
-        axios.get('http://localhost:5000/api/admin/stats', { headers: getAuthHeaders() })
+        axios.get(ADMIN_ENDPOINTS.USERS, { headers: getAuthHeaders() }),
+        axios.get(ADMIN_ENDPOINTS.ALERTS, { headers: getAuthHeaders() }),
+        axios.get(ADMIN_ENDPOINTS.STATS, { headers: getAuthHeaders() })
       ]);
 
       setUsers(usersRes.data.users || []);
@@ -104,7 +105,7 @@ const AdminDashboard = () => {
   const loadAnalyticsData = async () => {
     setAnalyticsLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/analytics', { 
+      const response = await axios.get(ADMIN_ENDPOINTS.ANALYTICS, { 
         headers: getAuthHeaders(),
         params: { period: analyticsPeriod }
       });
@@ -119,7 +120,7 @@ const AdminDashboard = () => {
 
   const handleAlertStatusUpdate = async (alertId, status) => {
     try {
-      await axios.patch(`http://localhost:5000/api/admin/alerts/${alertId}/status`, 
+      await axios.patch(ADMIN_ENDPOINTS.ALERT_STATUS(alertId), 
         { status }, 
         { headers: getAuthHeaders() }
       );
@@ -137,7 +138,7 @@ const AdminDashboard = () => {
         payload.reason = deactivationReason;
       }
       
-      await axios.patch(`http://localhost:5000/api/admin/users/${userId}/status`, 
+      await axios.patch(ADMIN_ENDPOINTS.USER_STATUS(userId), 
         payload, 
         { headers: getAuthHeaders() }
       );
@@ -158,7 +159,7 @@ const AdminDashboard = () => {
 
   const handleExportData = async (type) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/admin/export`, {
+      const response = await axios.get(ADMIN_ENDPOINTS.EXPORT, {
         headers: getAuthHeaders(),
         params: { type, format: 'csv' },
         responseType: 'blob'

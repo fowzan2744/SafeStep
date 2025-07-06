@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { ADMIN_ENDPOINTS } from '../services/api';
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const AdminLogin = () => {
       setLoading(true);
       
       // Admin authentication endpoint
-      const response = await axios.post('http://localhost:5000/api/admin/login', formData);
+      const response = await axios.post(ADMIN_ENDPOINTS.LOGIN, formData);
       
       if (response.data.token) {
         localStorage.setItem('adminToken', response.data.token);

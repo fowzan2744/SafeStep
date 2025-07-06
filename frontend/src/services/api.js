@@ -34,6 +34,20 @@ export const EMERGENCY_SERVICES_ENDPOINTS = {
   GET_NEARBY: `${API_BASE_URL}/emergency-services/nearby`,
 };
 
+// Admin endpoints
+export const ADMIN_ENDPOINTS = {
+  LOGIN: `${API_BASE_URL}/admin/login`,
+  SEND_OTP: `${API_BASE_URL}/admin/send-otp`,
+  VERIFY_OTP: `${API_BASE_URL}/admin/verify-otp`,
+  USERS: `${API_BASE_URL}/admin/users`,
+  USER_STATUS: (userId) => `${API_BASE_URL}/admin/users/${userId}/status`,
+  ALERTS: `${API_BASE_URL}/admin/alerts`,
+  ALERT_STATUS: (alertId) => `${API_BASE_URL}/admin/alerts/${alertId}/status`,
+  STATS: `${API_BASE_URL}/admin/stats`,
+  ANALYTICS: `${API_BASE_URL}/admin/analytics`,
+  EXPORT: `${API_BASE_URL}/admin/export`,
+};
+
 // Default axios configuration
 export const API_CONFIG = {
   baseURL: API_BASE_URL,

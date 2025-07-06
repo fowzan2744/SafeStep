@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
+import { ADMIN_ENDPOINTS } from '../services/api';
 
 const AdminSignup = () => {
   const [step, setStep] = useState('email'); // 'email' or 'otp'
@@ -45,7 +46,7 @@ const AdminSignup = () => {
       setLoading(true);
       
       // Send OTP to admin email
-      const response = await axios.post('http://localhost:5000/api/admin/send-otp', {
+      const response = await axios.post(ADMIN_ENDPOINTS.SEND_OTP, {
         name: formData.name,
         email: formData.email,
         password: formData.password
@@ -75,7 +76,7 @@ const AdminSignup = () => {
       setLoading(true);
       
       // Verify OTP and create admin
-      const response = await axios.post('http://localhost:5000/api/admin/verify-otp', {
+      const response = await axios.post(ADMIN_ENDPOINTS.VERIFY_OTP, {
         name: formData.name,
         email: formData.email,
         password: formData.password,
